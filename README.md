@@ -2,6 +2,8 @@
 
 This is the skeleton for a C++ implementation of the Stella programming language interpreter.
 
+![Screenshot from VS Code.](images/vscode-demo.png)
+
 ### Requirements
 
 This was tested with:
