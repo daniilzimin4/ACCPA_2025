@@ -1,12 +1,14 @@
 #include <iostream>
 #include "TypeCheck.h"
+#include "VisitTypeCheck.h"
 #include "Stella/Absyn.H"
 
-namespace Stella {
+namespace Stella
+{
 
-void typecheckProgram(Program *program) {
-  std::cout << "typechecker is not implemented!\n";
-  return;
-}
+  void typecheckProgram(Program *program)
+  {
+    program->accept(new VisitTypeCheck());
+  }
 
 } // namespace Stella
