@@ -43,14 +43,22 @@ make interpret <filename>
 
 This starts the interpreter reading the program from the input file and waiting for the input of the argument for the _main_ function.
 
+4. To run tests:
+
+```sh
+make test
+```
+
+This will run the tests specified in [`CMakeLists.txt`](CMakeLists.txt).
+
 ### Code Structure
 
 [Interpret.cpp](src/Interpret.cpp) is the main file that contains the logic for reading a program and its arguments (if you run an interpreter).
 
-[TypeCheck.h](src/TypeCheck.h) and [TypeCheck.cpp](src/TypeCheck.cpp) files assume the content of the type checker logic. Currently they contain only prototypes of the functions for further implementation.
+[`TypeCheck.h`](src/TypeCheck.h) and [`TypeCheck.cpp`](src/TypeCheck.cpp) files assume the content of the type checker logic. Currently they contain only prototypes of the functions for further implementation.
 The input program from the interpreter is passed directly to the `typecheckProgram` function.
 
-[Eval.h](src/Eval.cpp) and [Eval.cpp](src/Eval.cpp) files similarly imply the logic of interpreting the program. They also contain only prototypes. The input program (read from the file) and the argument (entered after the interpreter starts) are passed directly to the `evalMainWith` function.
+[`Eval.h`](src/Eval.cpp) and [`Eval.cpp`](src/Eval.cpp) files similarly imply the logic of interpreting the program. They also contain only prototypes. The input program (read from the file) and the argument (entered after the interpreter starts) are passed directly to the `evalMainWith` function.
 
 ### How to develop
 
