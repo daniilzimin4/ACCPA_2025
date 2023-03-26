@@ -1,4 +1,4 @@
-# C++ stella-implementation-assignment
+# Stella implementation in C++ (template)
 
 This is the skeleton for a C++ implementation of the Stella programming language interpreter.
 
