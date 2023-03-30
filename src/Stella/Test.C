@@ -50,9 +50,9 @@ int main(int argc, char ** argv)
     }
   } else input = stdin;
   /* The default entry point is used. For other options see Parser.H */
-  Stella::Program *parse_tree = NULL;
+  Stella::ListStellaIdent *parse_tree = NULL;
   try {
-  parse_tree = Stella::pProgram(input);
+  parse_tree = Stella::pListStellaIdent(input);
   } catch( Stella::parse_error &e) {
      std::cerr << "Parse error on line " << e.getLine() << "\n";
   }
