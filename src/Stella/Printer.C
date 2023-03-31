@@ -135,6 +135,21 @@ char *PrintAbsyn::print(Visitable *v)
   return buf_;
 }
 
+void PrintAbsyn::visitProgram(Program *p) {} //abstract class
+
+void PrintAbsyn::visitAProgram(AProgram *p)
+{
+  int oldi = _i_;
+  if (oldi > 0) render(STELLA__L_PAREN);
+
+  _i_ = 0; p->languagedecl_->accept(this);
+  _i_ = 0; visitListExtension(p->listextension_);
+  _i_ = 0; visitListDecl(p->listdecl_);
+
+  if (oldi > 0) render(STELLA__R_PAREN);
+  _i_ = oldi;
+}
+
 void PrintAbsyn::visitListStellaIdent(ListStellaIdent *liststellaident)
 {
   iterListStellaIdent(liststellaident->begin(), liststellaident->end());
@@ -151,21 +166,6 @@ void PrintAbsyn::iterListStellaIdent(ListStellaIdent::const_iterator i, ListStel
   { /* cons */
     visitStellaIdent(*i); render(','); iterListStellaIdent(i+1, j);
   }
-}
-
-void PrintAbsyn::visitProgram(Program *p) {} //abstract class
-
-void PrintAbsyn::visitAProgram(AProgram *p)
-{
-  int oldi = _i_;
-  if (oldi > 0) render(STELLA__L_PAREN);
-
-  _i_ = 0; p->languagedecl_->accept(this);
-  _i_ = 0; visitListExtension(p->listextension_);
-  _i_ = 0; visitListDecl(p->listdecl_);
-
-  if (oldi > 0) render(STELLA__R_PAREN);
-  _i_ = oldi;
 }
 
 void PrintAbsyn::visitLanguageDecl(LanguageDecl *p) {} //abstract class
@@ -1760,15 +1760,6 @@ char *ShowAbsyn::show(Visitable *v)
   return buf_;
 }
 
-void ShowAbsyn::visitListStellaIdent(ListStellaIdent *liststellaident)
-{
-  for (ListStellaIdent::const_iterator i = liststellaident->begin() ; i != liststellaident->end() ; ++i)
-  {
-    visitStellaIdent(*i) ;
-    if (i != liststellaident->end() - 1) bufAppend(", ");
-  }
-}
-
 void ShowAbsyn::visitProgram(Program *p) {} //abstract class
 
 void ShowAbsyn::visitAProgram(AProgram *p)
@@ -1789,6 +1780,15 @@ void ShowAbsyn::visitAProgram(AProgram *p)
   bufAppend(']');
   bufAppend(')');
 }
+void ShowAbsyn::visitListStellaIdent(ListStellaIdent *liststellaident)
+{
+  for (ListStellaIdent::const_iterator i = liststellaident->begin() ; i != liststellaident->end() ; ++i)
+  {
+    visitStellaIdent(*i) ;
+    if (i != liststellaident->end() - 1) bufAppend(", ");
+  }
+}
+
 void ShowAbsyn::visitLanguageDecl(LanguageDecl *p) {} //abstract class
 
 void ShowAbsyn::visitLanguageCore(LanguageCore *p)

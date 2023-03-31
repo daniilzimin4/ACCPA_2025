@@ -54,8 +54,8 @@ extern yyscan_t Stella_initialize_lexer(FILE * inp);
   char   _char;
   double _double;
   char*  _string;
-  Stella::ListStellaIdent* liststellaident_;
   Stella::Program* program_;
+  Stella::ListStellaIdent* liststellaident_;
   Stella::LanguageDecl* languagedecl_;
   Stella::Extension* extension_;
   Stella::ListExtensionName* listextensionname_;
@@ -177,8 +177,8 @@ extern int yylex(YYSTYPE *lvalp, YYLTYPE *llocp, yyscan_t scanner);
 %token<_string> T_StellaIdent    /* StellaIdent */
 %token<_int>    _INTEGER_
 
-%type <liststellaident_> ListStellaIdent
 %type <program_> Program
+%type <liststellaident_> ListStellaIdent
 %type <languagedecl_> LanguageDecl
 %type <extension_> Extension
 %type <listextensionname_> ListExtensionName
@@ -229,15 +229,15 @@ extern int yylex(YYSTYPE *lvalp, YYLTYPE *llocp, yyscan_t scanner);
 %type <listrecordfieldtype_> ListRecordFieldType
 %type <typing_> Typing
 
-%start ListStellaIdent
+%start Program
 
 %%
 
+Program : LanguageDecl ListExtension ListDecl { $$ = new Stella::AProgram($1, $2, $3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->program_ = $$; }
+;
 ListStellaIdent : /* empty */ { $$ = new Stella::ListStellaIdent(); result->liststellaident_ = $$; }
   | T_StellaIdent { $$ = new Stella::ListStellaIdent(); $$->push_back($1); result->liststellaident_ = $$; }
   | T_StellaIdent _COMMA ListStellaIdent { $3->push_back($1); $$ = $3; result->liststellaident_ = $$; }
-;
-Program : LanguageDecl ListExtension ListDecl { $$ = new Stella::AProgram($1, $2, $3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->program_ = $$; }
 ;
 LanguageDecl : _KW_language _KW_core _SEMI { $$ = new Stella::LanguageCore(); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->languagedecl_ = $$; }
 ;
@@ -442,6 +442,50 @@ Typing : Expr _COLON Type { $$ = new Stella::ATyping($1, $3); $$->line_number = 
 
 namespace Stella
 {
+/* Entrypoint: parse Program* from file. */
+Program* pProgram(FILE *inp)
+{
+  YYSTYPE result;
+  yyscan_t scanner = Stella_initialize_lexer(inp);
+  if (!scanner) {
+    fprintf(stderr, "Failed to initialize lexer.\n");
+    return 0;
+  }
+  int error = yyparse(scanner, &result);
+  Stellalex_destroy(scanner);
+  if (error)
+  { /* Failure */
+    return 0;
+  }
+  else
+  { /* Success */
+    return result.program_;
+  }
+}
+
+/* Entrypoint: parse Program* from string. */
+Program* psProgram(const char *str)
+{
+  YYSTYPE result;
+  yyscan_t scanner = Stella_initialize_lexer(0);
+  if (!scanner) {
+    fprintf(stderr, "Failed to initialize lexer.\n");
+    return 0;
+  }
+  YY_BUFFER_STATE buf = Stella_scan_string(str, scanner);
+  int error = yyparse(scanner, &result);
+  Stella_delete_buffer(buf, scanner);
+  Stellalex_destroy(scanner);
+  if (error)
+  { /* Failure */
+    return 0;
+  }
+  else
+  { /* Success */
+    return result.program_;
+  }
+}
+
 /* Entrypoint: parse ListStellaIdent* from file. */
 ListStellaIdent* pListStellaIdent(FILE *inp)
 {
@@ -485,50 +529,6 @@ ListStellaIdent* psListStellaIdent(const char *str)
   { /* Success */
 std::reverse(result.liststellaident_->begin(), result.liststellaident_->end());
     return result.liststellaident_;
-  }
-}
-
-/* Entrypoint: parse Program* from file. */
-Program* pProgram(FILE *inp)
-{
-  YYSTYPE result;
-  yyscan_t scanner = Stella_initialize_lexer(inp);
-  if (!scanner) {
-    fprintf(stderr, "Failed to initialize lexer.\n");
-    return 0;
-  }
-  int error = yyparse(scanner, &result);
-  Stellalex_destroy(scanner);
-  if (error)
-  { /* Failure */
-    return 0;
-  }
-  else
-  { /* Success */
-    return result.program_;
-  }
-}
-
-/* Entrypoint: parse Program* from string. */
-Program* psProgram(const char *str)
-{
-  YYSTYPE result;
-  yyscan_t scanner = Stella_initialize_lexer(0);
-  if (!scanner) {
-    fprintf(stderr, "Failed to initialize lexer.\n");
-    return 0;
-  }
-  YY_BUFFER_STATE buf = Stella_scan_string(str, scanner);
-  int error = yyparse(scanner, &result);
-  Stella_delete_buffer(buf, scanner);
-  Stellalex_destroy(scanner);
-  if (error)
-  { /* Failure */
-    return 0;
-  }
-  else
-  { /* Success */
-    return result.program_;
   }
 }
 

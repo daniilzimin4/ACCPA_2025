@@ -5,9 +5,9 @@ token StellaIdent ((letter | '_') (letter | digit | '_' | '-' | '!' | '?' | ':')
 
 token ExtensionName ( {"#"} (letter | '_' | '-' | digit)+ ) ;
 
-separator StellaIdent "," ;
-
 AProgram.  Program ::= LanguageDecl [Extension] [Decl] ;
+
+separator StellaIdent "," ;
 
 LanguageCore. LanguageDecl ::= "language" "core" ";" ;
 

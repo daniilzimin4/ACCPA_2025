@@ -138,8 +138,8 @@ union YYSTYPE
   char   _char;
   double _double;
   char*  _string;
-  Stella::ListStellaIdent* liststellaident_;
   Stella::Program* program_;
+  Stella::ListStellaIdent* liststellaident_;
   Stella::LanguageDecl* languagedecl_;
   Stella::Extension* extension_;
   Stella::ListExtensionName* listextensionname_;

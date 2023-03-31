@@ -10,10 +10,10 @@
 
 namespace Stella
 {
-ListStellaIdent* pListStellaIdent(FILE *inp);
-ListStellaIdent* pListStellaIdent(const char *str);
 Program* pProgram(FILE *inp);
 Program* pProgram(const char *str);
+ListStellaIdent* pListStellaIdent(FILE *inp);
+ListStellaIdent* pListStellaIdent(const char *str);
 LanguageDecl* pLanguageDecl(FILE *inp);
 LanguageDecl* pLanguageDecl(const char *str);
 Extension* pExtension(FILE *inp);

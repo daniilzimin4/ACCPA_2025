@@ -36,10 +36,10 @@ class PrintAbsyn : public Visitor
   ~PrintAbsyn(void);
   char *print(Visitable *v);
 
-  void visitListStellaIdent(ListStellaIdent *p);
-  void iterListStellaIdent(ListStellaIdent::const_iterator i, ListStellaIdent::const_iterator j);
   void visitProgram(Program *p); /* abstract class */
   void visitAProgram(AProgram *p);
+  void visitListStellaIdent(ListStellaIdent *p);
+  void iterListStellaIdent(ListStellaIdent::const_iterator i, ListStellaIdent::const_iterator j);
   void visitLanguageDecl(LanguageDecl *p); /* abstract class */
   void visitLanguageCore(LanguageCore *p);
   void visitExtension(Extension *p); /* abstract class */
@@ -254,10 +254,10 @@ class ShowAbsyn : public Visitor
   ~ShowAbsyn(void);
   char *show(Visitable *v);
 
-  void visitListStellaIdent(ListStellaIdent *p);
-  void iterListStellaIdent(ListStellaIdent::const_iterator i, ListStellaIdent::const_iterator j);
   void visitProgram(Program *p); /* abstract class */
   void visitAProgram(AProgram *p);
+  void visitListStellaIdent(ListStellaIdent *p);
+  void iterListStellaIdent(ListStellaIdent::const_iterator i, ListStellaIdent::const_iterator j);
   void visitLanguageDecl(LanguageDecl *p); /* abstract class */
   void visitLanguageCore(LanguageCore *p);
   void visitExtension(Extension *p); /* abstract class */
