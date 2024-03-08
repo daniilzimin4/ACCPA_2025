@@ -69,6 +69,8 @@ class NoPatternData;
 class SomePatternData;
 class NoExprData;
 class SomeExprData;
+class PatternCastAs;
+class PatternAsc;
 class PatternVariant;
 class PatternInl;
 class PatternInr;
@@ -125,6 +127,7 @@ class Panic;
 class Throw;
 class TryCatch;
 class TryWith;
+class TryCastAs;
 class Inl;
 class Inr;
 class Succ;
@@ -226,6 +229,8 @@ public:
   virtual void visitSomePatternData(SomePatternData *p) = 0;
   virtual void visitNoExprData(NoExprData *p) = 0;
   virtual void visitSomeExprData(SomeExprData *p) = 0;
+  virtual void visitPatternCastAs(PatternCastAs *p) = 0;
+  virtual void visitPatternAsc(PatternAsc *p) = 0;
   virtual void visitPatternVariant(PatternVariant *p) = 0;
   virtual void visitPatternInl(PatternInl *p) = 0;
   virtual void visitPatternInr(PatternInr *p) = 0;
@@ -282,6 +287,7 @@ public:
   virtual void visitThrow(Throw *p) = 0;
   virtual void visitTryCatch(TryCatch *p) = 0;
   virtual void visitTryWith(TryWith *p) = 0;
+  virtual void visitTryCastAs(TryCastAs *p) = 0;
   virtual void visitInl(Inl *p) = 0;
   virtual void visitInr(Inr *p) = 0;
   virtual void visitSucc(Succ *p) = 0;
@@ -1039,6 +1045,36 @@ public:
   virtual void accept(Visitor *v);
   virtual SomeExprData *clone() const;
   void swap(SomeExprData &);
+};
+
+class PatternCastAs : public Pattern
+{
+public:
+  Pattern *pattern_;
+  Type *type_;
+
+  PatternCastAs(const PatternCastAs &);
+  PatternCastAs &operator=(const PatternCastAs &);
+  PatternCastAs(Pattern *p1, Type *p2);
+  ~PatternCastAs();
+  virtual void accept(Visitor *v);
+  virtual PatternCastAs *clone() const;
+  void swap(PatternCastAs &);
+};
+
+class PatternAsc : public Pattern
+{
+public:
+  Pattern *pattern_;
+  Type *type_;
+
+  PatternAsc(const PatternAsc &);
+  PatternAsc &operator=(const PatternAsc &);
+  PatternAsc(Pattern *p1, Type *p2);
+  ~PatternAsc();
+  virtual void accept(Visitor *v);
+  virtual PatternAsc *clone() const;
+  void swap(PatternAsc &);
 };
 
 class PatternVariant : public Pattern
@@ -1841,6 +1877,24 @@ public:
   virtual void accept(Visitor *v);
   virtual TryWith *clone() const;
   void swap(TryWith &);
+};
+
+class TryCastAs : public Expr
+{
+public:
+  Expr *expr_1;
+  Type *type_;
+  Pattern *pattern_;
+  Expr *expr_2;
+  Expr *expr_3;
+
+  TryCastAs(const TryCastAs &);
+  TryCastAs &operator=(const TryCastAs &);
+  TryCastAs(Expr *p1, Type *p2, Pattern *p3, Expr *p4, Expr *p5);
+  ~TryCastAs();
+  virtual void accept(Visitor *v);
+  virtual TryCastAs *clone() const;
+  void swap(TryCastAs &);
 };
 
 class Inl : public Expr

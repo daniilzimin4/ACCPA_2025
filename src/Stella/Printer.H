@@ -106,6 +106,8 @@ class PrintAbsyn : public Visitor
   void visitNoExprData(NoExprData *p);
   void visitSomeExprData(SomeExprData *p);
   void visitPattern(Pattern *p); /* abstract class */
+  void visitPatternCastAs(PatternCastAs *p);
+  void visitPatternAsc(PatternAsc *p);
   void visitPatternVariant(PatternVariant *p);
   void visitPatternInl(PatternInl *p);
   void visitPatternInr(PatternInr *p);
@@ -170,6 +172,7 @@ class PrintAbsyn : public Visitor
   void visitThrow(Throw *p);
   void visitTryCatch(TryCatch *p);
   void visitTryWith(TryWith *p);
+  void visitTryCastAs(TryCastAs *p);
   void visitInl(Inl *p);
   void visitInr(Inr *p);
   void visitSucc(Succ *p);
@@ -369,6 +372,8 @@ class ShowAbsyn : public Visitor
   void visitNoExprData(NoExprData *p);
   void visitSomeExprData(SomeExprData *p);
   void visitPattern(Pattern *p); /* abstract class */
+  void visitPatternCastAs(PatternCastAs *p);
+  void visitPatternAsc(PatternAsc *p);
   void visitPatternVariant(PatternVariant *p);
   void visitPatternInl(PatternInl *p);
   void visitPatternInr(PatternInr *p);
@@ -433,6 +438,7 @@ class ShowAbsyn : public Visitor
   void visitThrow(Throw *p);
   void visitTryCatch(TryCatch *p);
   void visitTryWith(TryWith *p);
+  void visitTryCastAs(TryCastAs *p);
   void visitInl(Inl *p);
   void visitInr(Inr *p);
   void visitSucc(Succ *p);

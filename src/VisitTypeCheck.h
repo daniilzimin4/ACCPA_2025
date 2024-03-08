@@ -171,6 +171,10 @@ namespace Stella
     void visitStellaIdent(StellaIdent x);
     void visitExtensionName(ExtensionName x);
     void visitMemoryAddress(MemoryAddress x);
+
+    void visitPatternCastAs(PatternCastAs* p);
+    void visitTryCastAs(TryCastAs* t);
+    void visitPatternAsc(PatternAsc* p);
   };
 }
 
