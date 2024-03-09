@@ -341,6 +341,24 @@ void Skeleton::visitSomeExprData(SomeExprData *some_expr_data)
 
 }
 
+void Skeleton::visitPatternCastAs(PatternCastAs *pattern_cast_as)
+{
+  /* Code For PatternCastAs Goes Here */
+
+  if (pattern_cast_as->pattern_) pattern_cast_as->pattern_->accept(this);
+  if (pattern_cast_as->type_) pattern_cast_as->type_->accept(this);
+
+}
+
+void Skeleton::visitPatternAsc(PatternAsc *pattern_asc)
+{
+  /* Code For PatternAsc Goes Here */
+
+  if (pattern_asc->pattern_) pattern_asc->pattern_->accept(this);
+  if (pattern_asc->type_) pattern_asc->type_->accept(this);
+
+}
+
 void Skeleton::visitPatternVariant(PatternVariant *pattern_variant)
 {
   /* Code For PatternVariant Goes Here */
@@ -810,6 +828,18 @@ void Skeleton::visitTryWith(TryWith *try_with)
 
   if (try_with->expr_1) try_with->expr_1->accept(this);
   if (try_with->expr_2) try_with->expr_2->accept(this);
+
+}
+
+void Skeleton::visitTryCastAs(TryCastAs *try_cast_as)
+{
+  /* Code For TryCastAs Goes Here */
+
+  if (try_cast_as->expr_1) try_cast_as->expr_1->accept(this);
+  if (try_cast_as->type_) try_cast_as->type_->accept(this);
+  if (try_cast_as->pattern_) try_cast_as->pattern_->accept(this);
+  if (try_cast_as->expr_2) try_cast_as->expr_2->accept(this);
+  if (try_cast_as->expr_3) try_cast_as->expr_3->accept(this);
 
 }
 

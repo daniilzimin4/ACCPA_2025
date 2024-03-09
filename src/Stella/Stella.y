@@ -316,7 +316,9 @@ PatternData : /* empty */ { $$ = new Stella::NoPatternData(); $$->line_number = 
 ExprData : /* empty */ { $$ = new Stella::NoExprData(); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->exprdata_ = $$; }
   | _EQ Expr { $$ = new Stella::SomeExprData($2); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->exprdata_ = $$; }
 ;
-Pattern : _SYMB_13 T_StellaIdent PatternData _SYMB_14 { $$ = new Stella::PatternVariant($2, $3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->pattern_ = $$; }
+Pattern : Pattern _KW_cast _KW_as Type { $$ = new Stella::PatternCastAs($1, $4); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->pattern_ = $$; }
+  | Pattern _KW_as Type { $$ = new Stella::PatternAsc($1, $3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->pattern_ = $$; }
+  | _SYMB_13 T_StellaIdent PatternData _SYMB_14 { $$ = new Stella::PatternVariant($2, $3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->pattern_ = $$; }
   | _KW_inl _LPAREN Pattern _RPAREN { $$ = new Stella::PatternInl($3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->pattern_ = $$; }
   | _KW_inr _LPAREN Pattern _RPAREN { $$ = new Stella::PatternInr($3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->pattern_ = $$; }
   | _LBRACE ListPattern _RBRACE { std::reverse($2->begin(),$2->end()) ;$$ = new Stella::PatternTuple($2); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->pattern_ = $$; }
@@ -393,7 +395,7 @@ Expr4 : Expr4 _STAR Expr5 { $$ = new Stella::Multiply($1, $3); $$->line_number =
   | Expr4 _KW_and Expr5 { $$ = new Stella::LogicAnd($1, $3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | Expr5 { $$ = $1; $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
 ;
-Expr5 : _KW_new _LPAREN Expr5 _RPAREN { $$ = new Stella::Ref($3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
+Expr5 : _KW_new _LPAREN Expr _RPAREN { $$ = new Stella::Ref($3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | _STAR Expr5 { $$ = new Stella::Deref($2); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | Expr6 { $$ = $1; $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
 ;
@@ -411,6 +413,7 @@ Expr6 : Expr6 _LPAREN ListExpr _RPAREN { std::reverse($3->begin(),$3->end()) ;$$
   | _KW_throw _LPAREN Expr _RPAREN { $$ = new Stella::Throw($3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | _KW_try _LBRACE Expr _RBRACE _KW_catch _LBRACE Pattern _RDARROW Expr _RBRACE { $$ = new Stella::TryCatch($3, $7, $9); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | _KW_try _LBRACE Expr _RBRACE _KW_with _LBRACE Expr _RBRACE { $$ = new Stella::TryWith($3, $7); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
+  | _KW_try _LBRACE Expr _RBRACE _KW_cast _KW_as Type _LBRACE Pattern _RDARROW Expr _RBRACE _KW_with _LBRACE Expr _RBRACE { $$ = new Stella::TryCastAs($3, $7, $9, $11, $15); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | _KW_inl _LPAREN Expr _RPAREN { $$ = new Stella::Inl($3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | _KW_inr _LPAREN Expr _RPAREN { $$ = new Stella::Inr($3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | _KW_succ _LPAREN Expr _RPAREN { $$ = new Stella::Succ($3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }

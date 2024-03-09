@@ -1672,6 +1672,102 @@ SomeExprData *SomeExprData::clone() const
 
 
 
+/********************   PatternCastAs    ********************/
+PatternCastAs::PatternCastAs(Pattern *p1, Type *p2)
+{
+  pattern_ = p1;
+  type_ = p2;
+
+}
+
+PatternCastAs::PatternCastAs(const PatternCastAs & other)
+{
+  pattern_ = other.pattern_->clone();
+  type_ = other.type_->clone();
+
+}
+
+PatternCastAs &PatternCastAs::operator=(const PatternCastAs & other)
+{
+  PatternCastAs tmp(other);
+  swap(tmp);
+  return *this;
+}
+
+void PatternCastAs::swap(PatternCastAs & other)
+{
+  std::swap(pattern_, other.pattern_);
+  std::swap(type_, other.type_);
+
+}
+
+PatternCastAs::~PatternCastAs()
+{
+  delete(pattern_);
+  delete(type_);
+
+}
+
+void PatternCastAs::accept(Visitor *v)
+{
+  v->visitPatternCastAs(this);
+}
+
+PatternCastAs *PatternCastAs::clone() const
+{
+  return new PatternCastAs(*this);
+}
+
+
+
+/********************   PatternAsc    ********************/
+PatternAsc::PatternAsc(Pattern *p1, Type *p2)
+{
+  pattern_ = p1;
+  type_ = p2;
+
+}
+
+PatternAsc::PatternAsc(const PatternAsc & other)
+{
+  pattern_ = other.pattern_->clone();
+  type_ = other.type_->clone();
+
+}
+
+PatternAsc &PatternAsc::operator=(const PatternAsc & other)
+{
+  PatternAsc tmp(other);
+  swap(tmp);
+  return *this;
+}
+
+void PatternAsc::swap(PatternAsc & other)
+{
+  std::swap(pattern_, other.pattern_);
+  std::swap(type_, other.type_);
+
+}
+
+PatternAsc::~PatternAsc()
+{
+  delete(pattern_);
+  delete(type_);
+
+}
+
+void PatternAsc::accept(Visitor *v)
+{
+  v->visitPatternAsc(this);
+}
+
+PatternAsc *PatternAsc::clone() const
+{
+  return new PatternAsc(*this);
+}
+
+
+
 /********************   PatternVariant    ********************/
 PatternVariant::PatternVariant(StellaIdent p1, PatternData *p2)
 {
@@ -4208,6 +4304,66 @@ void TryWith::accept(Visitor *v)
 TryWith *TryWith::clone() const
 {
   return new TryWith(*this);
+}
+
+
+
+/********************   TryCastAs    ********************/
+TryCastAs::TryCastAs(Expr *p1, Type *p2, Pattern *p3, Expr *p4, Expr *p5)
+{
+  expr_1 = p1;
+  type_ = p2;
+  pattern_ = p3;
+  expr_2 = p4;
+  expr_3 = p5;
+
+}
+
+TryCastAs::TryCastAs(const TryCastAs & other)
+{
+  expr_1 = other.expr_1->clone();
+  type_ = other.type_->clone();
+  pattern_ = other.pattern_->clone();
+  expr_2 = other.expr_2->clone();
+  expr_3 = other.expr_3->clone();
+
+}
+
+TryCastAs &TryCastAs::operator=(const TryCastAs & other)
+{
+  TryCastAs tmp(other);
+  swap(tmp);
+  return *this;
+}
+
+void TryCastAs::swap(TryCastAs & other)
+{
+  std::swap(expr_1, other.expr_1);
+  std::swap(type_, other.type_);
+  std::swap(pattern_, other.pattern_);
+  std::swap(expr_2, other.expr_2);
+  std::swap(expr_3, other.expr_3);
+
+}
+
+TryCastAs::~TryCastAs()
+{
+  delete(expr_1);
+  delete(type_);
+  delete(pattern_);
+  delete(expr_2);
+  delete(expr_3);
+
+}
+
+void TryCastAs::accept(Visitor *v)
+{
+  v->visitTryCastAs(this);
+}
+
+TryCastAs *TryCastAs::clone() const
+{
+  return new TryCastAs(*this);
 }
 
 

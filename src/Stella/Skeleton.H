@@ -55,6 +55,8 @@ public:
   void visitSomePatternData(SomePatternData *p);
   void visitNoExprData(NoExprData *p);
   void visitSomeExprData(SomeExprData *p);
+  void visitPatternCastAs(PatternCastAs *p);
+  void visitPatternAsc(PatternAsc *p);
   void visitPatternVariant(PatternVariant *p);
   void visitPatternInl(PatternInl *p);
   void visitPatternInr(PatternInr *p);
@@ -111,6 +113,7 @@ public:
   void visitThrow(Throw *p);
   void visitTryCatch(TryCatch *p);
   void visitTryWith(TryWith *p);
+  void visitTryCastAs(TryCastAs *p);
   void visitInl(Inl *p);
   void visitInr(Inr *p);
   void visitSucc(Succ *p);
