@@ -168,6 +168,13 @@ void Skeleton::visitSomeThrowType(SomeThrowType *some_throw_type)
 
 }
 
+void Skeleton::visitTypeAuto(TypeAuto *type_auto)
+{
+  /* Code For TypeAuto Goes Here */
+
+
+}
+
 void Skeleton::visitTypeFun(TypeFun *type_fun)
 {
   /* Code For TypeFun Goes Here */

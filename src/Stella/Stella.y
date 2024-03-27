@@ -144,6 +144,7 @@ extern int yylex(YYSTYPE *lvalp, YYLTYPE *llocp, yyscan_t scanner);
 %token          _RBRACK          /* ] */
 %token          _KW_and          /* and */
 %token          _KW_as           /* as */
+%token          _KW_auto         /* auto */
 %token          _KW_cast         /* cast */
 %token          _KW_catch        /* catch */
 %token          _KW_cons         /* cons */
@@ -186,7 +187,7 @@ extern int yylex(YYSTYPE *lvalp, YYLTYPE *llocp, yyscan_t scanner);
 %token          _BAR             /* | */
 %token          _SYMB_14         /* |> */
 %token          _RBRACE          /* } */
-%token          _KW_79           /* µ */
+%token          _KW_80           /* µ */
 %token<_string> T_ExtensionName  /* ExtensionName */
 %token<_string> T_MemoryAddress  /* MemoryAddress */
 %token<_string> T_StellaIdent    /* StellaIdent */
@@ -434,9 +435,10 @@ Expr7 : _KW_true { $$ = new Stella::ConstTrue(); $$->line_number = @$.first_line
   | T_StellaIdent { $$ = new Stella::Var($1); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
   | _LPAREN Expr _RPAREN { $$ = $2; $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->expr_ = $$; }
 ;
-Type : _KW_fn _LPAREN ListType _RPAREN _RARROW Type { std::reverse($3->begin(),$3->end()) ;$$ = new Stella::TypeFun($3, $6); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->type_ = $$; }
+Type : _KW_auto { $$ = new Stella::TypeAuto(); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->type_ = $$; }
+  | _KW_fn _LPAREN ListType _RPAREN _RARROW Type { std::reverse($3->begin(),$3->end()) ;$$ = new Stella::TypeFun($3, $6); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->type_ = $$; }
   | _KW_forall ListStellaIdent _DOT Type { std::reverse($2->begin(),$2->end()) ;$$ = new Stella::TypeForAll($2, $4); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->type_ = $$; }
-  | _KW_79 T_StellaIdent _DOT Type { $$ = new Stella::TypeRec($2, $4); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->type_ = $$; }
+  | _KW_80 T_StellaIdent _DOT Type { $$ = new Stella::TypeRec($2, $4); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->type_ = $$; }
   | Type1 { $$ = $1; $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->type_ = $$; }
 ;
 Type1 : Type2 _PLUS Type2 { $$ = new Stella::TypeSum($1, $3); $$->line_number = @$.first_line; $$->char_number = @$.first_column; result->type_ = $$; }

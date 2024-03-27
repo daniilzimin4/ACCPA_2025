@@ -75,6 +75,7 @@ class PrintAbsyn : public Visitor
   void visitNoThrowType(NoThrowType *p);
   void visitSomeThrowType(SomeThrowType *p);
   void visitType(Type *p); /* abstract class */
+  void visitTypeAuto(TypeAuto *p);
   void visitTypeFun(TypeFun *p);
   void visitTypeForAll(TypeForAll *p);
   void visitTypeRec(TypeRec *p);
@@ -341,6 +342,7 @@ class ShowAbsyn : public Visitor
   void visitNoThrowType(NoThrowType *p);
   void visitSomeThrowType(SomeThrowType *p);
   void visitType(Type *p); /* abstract class */
+  void visitTypeAuto(TypeAuto *p);
   void visitTypeFun(TypeFun *p);
   void visitTypeForAll(TypeForAll *p);
   void visitTypeRec(TypeRec *p);

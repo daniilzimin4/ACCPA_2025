@@ -172,9 +172,10 @@ namespace Stella
     void visitExtensionName(ExtensionName x);
     void visitMemoryAddress(MemoryAddress x);
 
-    void visitPatternCastAs(PatternCastAs* p);
-    void visitTryCastAs(TryCastAs* t);
-    void visitPatternAsc(PatternAsc* p);
+    void visitPatternCastAs(PatternCastAs *p);
+    void visitTryCastAs(TryCastAs *p);
+    void visitPatternAsc(PatternAsc *p);
+    void visitTypeAuto(TypeAuto *p);
   };
 }
 

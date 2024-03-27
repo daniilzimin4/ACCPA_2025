@@ -130,6 +130,7 @@ public:
   void visitConstInt(ConstInt *p);
   void visitConstMemory(ConstMemory *p);
   void visitVar(Var *p);
+  void visitTypeAuto(TypeAuto *p);
   void visitTypeFun(TypeFun *p);
   void visitTypeForAll(TypeForAll *p);
   void visitTypeRec(TypeRec *p);

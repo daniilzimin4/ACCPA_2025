@@ -157,6 +157,7 @@ ConstInt.     Expr7 ::= Integer ;
 ConstMemory.  Expr7 ::= MemoryAddress ;
 Var.          Expr7 ::= StellaIdent ;
 
+TypeAuto.     Type ::= "auto" ;
 TypeFun.      Type ::= "fn" "(" [Type] ")" "->" Type ;
 TypeForAll.   Type ::= "forall" [StellaIdent] "." Type ;
 TypeRec.      Type ::= "µ" StellaIdent "." Type ;

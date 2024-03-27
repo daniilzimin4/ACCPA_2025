@@ -144,6 +144,7 @@ class ConstUnit;
 class ConstInt;
 class ConstMemory;
 class Var;
+class TypeAuto;
 class TypeFun;
 class TypeForAll;
 class TypeRec;
@@ -304,6 +305,7 @@ public:
   virtual void visitConstInt(ConstInt *p) = 0;
   virtual void visitConstMemory(ConstMemory *p) = 0;
   virtual void visitVar(Var *p) = 0;
+  virtual void visitTypeAuto(TypeAuto *p) = 0;
   virtual void visitTypeFun(TypeFun *p) = 0;
   virtual void visitTypeForAll(TypeForAll *p) = 0;
   virtual void visitTypeRec(TypeRec *p) = 0;
@@ -740,6 +742,19 @@ public:
   virtual void accept(Visitor *v);
   virtual SomeThrowType *clone() const;
   void swap(SomeThrowType &);
+};
+
+class TypeAuto : public Type
+{
+public:
+
+  TypeAuto(const TypeAuto &);
+  TypeAuto &operator=(const TypeAuto &);
+  TypeAuto();
+  ~TypeAuto();
+  virtual void accept(Visitor *v);
+  virtual TypeAuto *clone() const;
+  void swap(TypeAuto &);
 };
 
 class TypeFun : public Type

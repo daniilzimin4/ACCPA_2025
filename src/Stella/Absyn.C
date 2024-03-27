@@ -718,6 +718,46 @@ SomeThrowType *SomeThrowType::clone() const
 
 
 
+/********************   TypeAuto    ********************/
+TypeAuto::TypeAuto()
+{
+
+}
+
+TypeAuto::TypeAuto(const TypeAuto & other)
+{
+
+}
+
+TypeAuto &TypeAuto::operator=(const TypeAuto & other)
+{
+  TypeAuto tmp(other);
+  swap(tmp);
+  return *this;
+}
+
+void TypeAuto::swap(TypeAuto & other)
+{
+
+}
+
+TypeAuto::~TypeAuto()
+{
+
+}
+
+void TypeAuto::accept(Visitor *v)
+{
+  v->visitTypeAuto(this);
+}
+
+TypeAuto *TypeAuto::clone() const
+{
+  return new TypeAuto(*this);
+}
+
+
+
 /********************   TypeFun    ********************/
 TypeFun::TypeFun(ListType *p1, Type *p2)
 {

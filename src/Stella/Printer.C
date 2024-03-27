@@ -472,6 +472,17 @@ void PrintAbsyn::visitSomeThrowType(SomeThrowType *p)
 
 void PrintAbsyn::visitType(Type *p) {} //abstract class
 
+void PrintAbsyn::visitTypeAuto(TypeAuto *p)
+{
+  int oldi = _i_;
+  if (oldi > 0) render(STELLA__L_PAREN);
+
+  render("auto");
+
+  if (oldi > 0) render(STELLA__R_PAREN);
+  _i_ = oldi;
+}
+
 void PrintAbsyn::visitTypeFun(TypeFun *p)
 {
   int oldi = _i_;
@@ -2354,6 +2365,10 @@ void ShowAbsyn::visitSomeThrowType(SomeThrowType *p)
 }
 void ShowAbsyn::visitType(Type *p) {} //abstract class
 
+void ShowAbsyn::visitTypeAuto(TypeAuto *p)
+{
+  bufAppend("TypeAuto");
+}
 void ShowAbsyn::visitTypeFun(TypeFun *p)
 {
   bufAppend('(');
