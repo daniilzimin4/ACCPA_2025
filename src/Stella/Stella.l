@@ -81,6 +81,7 @@ IDENT [a-zA-Z0-9'_]
 <INITIAL>"Unit"      	 return _KW_Unit;
 <INITIAL>"and"      	 return _KW_and;
 <INITIAL>"as"      	 return _KW_as;
+<INITIAL>"auto"      	 return _KW_auto;
 <INITIAL>"cast"      	 return _KW_cast;
 <INITIAL>"catch"      	 return _KW_catch;
 <INITIAL>"cons"      	 return _KW_cons;
@@ -118,7 +119,7 @@ IDENT [a-zA-Z0-9'_]
 <INITIAL>"unit"      	 return _KW_unit;
 <INITIAL>"variant"      	 return _KW_variant;
 <INITIAL>"with"      	 return _KW_with;
-<INITIAL>"µ"      	 return _KW_79;
+<INITIAL>"µ"      	 return _KW_80;
 
 <INITIAL>"//"[^\n]* /* skip */; /* BNFC: comment "//" */
 <INITIAL>"/*" BEGIN COMMENT;

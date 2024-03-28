@@ -24,11 +24,11 @@ namespace Stella
   void VisitTypeCheck::visitPatternBinding(PatternBinding *t) {}     // abstract class
   void VisitTypeCheck::visitVariantFieldType(VariantFieldType *t) {} // abstract class
   void VisitTypeCheck::visitRecordFieldType(RecordFieldType *t) {}   // abstract class
-  void VisitTypeCheck::visitTyping(Typing *t) {}                     // abstract class
-  void VisitTypeCheck::visitPatternCastAs(PatternCastAs *p) {}       // abstract class
+  void VisitTypeCheck::visitTyping(Typing *t) {}                     // abstract class    
+  void VisitTypeCheck::visitPatternCastAs(PatternCastAs *t) {}       // abstract class
   void VisitTypeCheck::visitTryCastAs(TryCastAs *t) {}               // abstract class
-  void VisitTypeCheck::visitPatternAsc(PatternAsc* p){}              // abstract class
-
+  void VisitTypeCheck::visitPatternAsc(PatternAsc *t) {}             // abstract class
+  void VisitTypeCheck::visitTypeAuto(TypeAuto *t) {}                 // abstract class
 
   void VisitTypeCheck::visitAProgram(AProgram *a_program)
   {
