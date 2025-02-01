@@ -12,7 +12,8 @@ void usage()
     std::cerr << "Usage: Call with one of the following argument combinations:" << std::endl;
     std::cerr << "\t(no arguments)\t\tTypecheck input from stdin." << std::endl;
     std::cerr << "\ttypecheck FILE\t\tParse and typecheck the content of FILE." << std::endl;
-    std::cerr << "\tinterpret FILE\t\tParse the content of FILE, then interpret the program with input from stdin." << std::endl;
+    std::cerr << "\tinterpret FILE\t\tParse the content of FILE, then interpret the program with input from stdin." <<
+        std::endl;
     std::cerr << "\thelp\t\tShow this message." << std::endl;
     std::cerr << "\tFILE\t\t\tInterpret the program in FILE with input from stdin (default mode)." << std::endl;
 }
@@ -73,7 +74,7 @@ int main(const int argc, char** argv)
         input = stdin;
     }
 
-    Stella::Program* prog = nullptr;
+    Stella::Program* prog;
     try
     {
         prog = Stella::pProgram(input);
@@ -81,15 +82,13 @@ int main(const int argc, char** argv)
     }
     catch (Stella::parse_error& ex)
     {
-        std::cerr << ex.what() << std::endl;
+        std::cerr << "Parsing failed: " << ex.what() << std::endl;
+        exit(1);
     }
     if (!filename.empty())
         fclose(input);
 
-    if (prog)
-    {
-        Stella::typecheckProgram(prog);
-    }
+    Stella::typecheckProgram(prog);
 
     if (mode == INTERPRET)
     {
