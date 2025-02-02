@@ -5,10 +5,8 @@
 
 namespace Stella
 {
-
-  void typecheckProgram(Program *program)
-  {
-    program->accept(new VisitTypeCheck());
-  }
-
+    void typecheckProgram(Program* program)
+    {
+        program->accept(new VisitTypeCheck());
+    }
 } // namespace Stella

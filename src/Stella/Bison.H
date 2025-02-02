@@ -92,53 +92,54 @@ extern int Stelladebug;
     _RBRACK = 293,                 /* _RBRACK  */
     _KW_and = 294,                 /* _KW_and  */
     _KW_as = 295,                  /* _KW_as  */
-    _KW_cast = 296,                /* _KW_cast  */
-    _KW_catch = 297,               /* _KW_catch  */
-    _KW_cons = 298,                /* _KW_cons  */
-    _KW_core = 299,                /* _KW_core  */
-    _KW_else = 300,                /* _KW_else  */
-    _KW_exception = 301,           /* _KW_exception  */
-    _KW_extend = 302,              /* _KW_extend  */
-    _KW_false = 303,               /* _KW_false  */
-    _KW_fix = 304,                 /* _KW_fix  */
-    _KW_fn = 305,                  /* _KW_fn  */
-    _KW_fold = 306,                /* _KW_fold  */
-    _KW_forall = 307,              /* _KW_forall  */
-    _KW_generic = 308,             /* _KW_generic  */
-    _KW_if = 309,                  /* _KW_if  */
-    _KW_in = 310,                  /* _KW_in  */
-    _KW_inl = 311,                 /* _KW_inl  */
-    _KW_inline = 312,              /* _KW_inline  */
-    _KW_inr = 313,                 /* _KW_inr  */
-    _KW_language = 314,            /* _KW_language  */
-    _KW_let = 315,                 /* _KW_let  */
-    _KW_letrec = 316,              /* _KW_letrec  */
-    _KW_match = 317,               /* _KW_match  */
-    _KW_new = 318,                 /* _KW_new  */
-    _KW_not = 319,                 /* _KW_not  */
-    _KW_or = 320,                  /* _KW_or  */
-    _SYMB_30 = 321,                /* _SYMB_30  */
-    _KW_return = 322,              /* _KW_return  */
-    _KW_succ = 323,                /* _KW_succ  */
-    _KW_then = 324,                /* _KW_then  */
-    _KW_throw = 325,               /* _KW_throw  */
-    _KW_throws = 326,              /* _KW_throws  */
-    _KW_true = 327,                /* _KW_true  */
-    _KW_try = 328,                 /* _KW_try  */
-    _KW_type = 329,                /* _KW_type  */
-    _KW_unfold = 330,              /* _KW_unfold  */
-    _KW_unit = 331,                /* _KW_unit  */
-    _KW_variant = 332,             /* _KW_variant  */
-    _KW_with = 333,                /* _KW_with  */
-    _LBRACE = 334,                 /* _LBRACE  */
-    _BAR = 335,                    /* _BAR  */
-    _SYMB_14 = 336,                /* _SYMB_14  */
-    _RBRACE = 337,                 /* _RBRACE  */
-    _KW_79 = 338,                  /* _KW_79  */
-    T_ExtensionName = 339,         /* T_ExtensionName  */
-    T_MemoryAddress = 340,         /* T_MemoryAddress  */
-    T_StellaIdent = 341,           /* T_StellaIdent  */
-    _INTEGER_ = 342                /* _INTEGER_  */
+    _KW_auto = 296,                /* _KW_auto  */
+    _KW_cast = 297,                /* _KW_cast  */
+    _KW_catch = 298,               /* _KW_catch  */
+    _KW_cons = 299,                /* _KW_cons  */
+    _KW_core = 300,                /* _KW_core  */
+    _KW_else = 301,                /* _KW_else  */
+    _KW_exception = 302,           /* _KW_exception  */
+    _KW_extend = 303,              /* _KW_extend  */
+    _KW_false = 304,               /* _KW_false  */
+    _KW_fix = 305,                 /* _KW_fix  */
+    _KW_fn = 306,                  /* _KW_fn  */
+    _KW_fold = 307,                /* _KW_fold  */
+    _KW_forall = 308,              /* _KW_forall  */
+    _KW_generic = 309,             /* _KW_generic  */
+    _KW_if = 310,                  /* _KW_if  */
+    _KW_in = 311,                  /* _KW_in  */
+    _KW_inl = 312,                 /* _KW_inl  */
+    _KW_inline = 313,              /* _KW_inline  */
+    _KW_inr = 314,                 /* _KW_inr  */
+    _KW_language = 315,            /* _KW_language  */
+    _KW_let = 316,                 /* _KW_let  */
+    _KW_letrec = 317,              /* _KW_letrec  */
+    _KW_match = 318,               /* _KW_match  */
+    _KW_new = 319,                 /* _KW_new  */
+    _KW_not = 320,                 /* _KW_not  */
+    _KW_or = 321,                  /* _KW_or  */
+    _SYMB_30 = 322,                /* _SYMB_30  */
+    _KW_return = 323,              /* _KW_return  */
+    _KW_succ = 324,                /* _KW_succ  */
+    _KW_then = 325,                /* _KW_then  */
+    _KW_throw = 326,               /* _KW_throw  */
+    _KW_throws = 327,              /* _KW_throws  */
+    _KW_true = 328,                /* _KW_true  */
+    _KW_try = 329,                 /* _KW_try  */
+    _KW_type = 330,                /* _KW_type  */
+    _KW_unfold = 331,              /* _KW_unfold  */
+    _KW_unit = 332,                /* _KW_unit  */
+    _KW_variant = 333,             /* _KW_variant  */
+    _KW_with = 334,                /* _KW_with  */
+    _LBRACE = 335,                 /* _LBRACE  */
+    _BAR = 336,                    /* _BAR  */
+    _SYMB_14 = 337,                /* _SYMB_14  */
+    _RBRACE = 338,                 /* _RBRACE  */
+    _SYMB_34 = 339,                /* _SYMB_34  */
+    T_ExtensionName = 340,         /* T_ExtensionName  */
+    T_MemoryAddress = 341,         /* T_MemoryAddress  */
+    T_StellaIdent = 342,           /* T_StellaIdent  */
+    _INTEGER_ = 343                /* _INTEGER_  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -147,7 +148,7 @@ extern int Stelladebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 52 "Stella.y"
+#line 53 "Stella.y"
 
   int    _int;
   char   _char;
@@ -192,7 +193,7 @@ union YYSTYPE
   Stella::ListRecordFieldType* listrecordfieldtype_;
   Stella::Typing* typing_;
 
-#line 196 "Bison.H"
+#line 197 "Bison.H"
 
 };
 typedef union YYSTYPE YYSTYPE;
