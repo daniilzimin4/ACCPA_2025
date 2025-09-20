@@ -1,11 +1,13 @@
 #pragma once
 #include "Stella/Absyn.H"
+#include "TypeCheck.h"
 
 namespace Stella
 {
     class VisitTypeCheck final : public Visitor
     {
     public:
+        TypeCheck::Env context;
         void visitProgram(Program* p) override;
         void visitLanguageDecl(LanguageDecl* p) override;
         void visitExtension(Extension* p) override;
